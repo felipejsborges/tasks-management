@@ -1,21 +1,20 @@
-## [ ] As a user, I want to be able to register in the system to create an account.
+## [X] As a user, I want to be able to register in the system to create an account.
 
 **Functional Requirements:**
 
-- [ ] The system should allow the user to register by filling out a registration form with name, email, and password;
-- [ ] The system should check if the email provided already exists in the database and notify the user if it does.
+- [X] The system should allow the user to register by filling out a registration form with name, email, and password;
+- [X] The system should check if the email provided already exists in the database and notify the user if it does.
 
 **Non-functional Requirements:**
 
-- [ ] The user's password must be encrypted before being stored in the database;
-- [ ] The system should be responsive and easy to use on mobile devices.
+- [X] The user's password must be encrypted before being stored in the database;
 
-## [ ] As a user, I want to be able to log in to the system to access my account.
+## [X] As a user, I want to be able to log in to the system to access my account.
 
 **Functional Requirements:**
 
-- [ ] The system should allow the user to log in by providing the registered email and password;
-- [ ] The system should verify if the login information is valid and allow access to the user's account.
+- [X] The system should allow the user to log in by providing the registered email and password;
+- [X] The system should verify if the login information is valid and allow access to the user's account.
 
 **Non-functional Requirements:**
 

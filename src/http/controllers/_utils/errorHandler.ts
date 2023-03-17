@@ -1,7 +1,6 @@
-// import on app.ts and 
 import { env } from "@/env"
+import { AppError } from "@/errors/AppError"
 import { FastifyReply } from "fastify"
-import { AppError } from "./AppError"
 
 export async function errorHandler(
   error: Error,

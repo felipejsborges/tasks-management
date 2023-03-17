@@ -1,7 +1,7 @@
 import { HashProvider } from "@/providers/hash/interface"
 import { UsersRepository } from "@/repositories/users/interface"
+import { UserAlreadyExists } from "../_errors/user-already-exists"
 
-import { UserAlreadyExists } from "./errors/user-already-exists"
 
 interface RegisterUseCaseInput {
 	email: string
