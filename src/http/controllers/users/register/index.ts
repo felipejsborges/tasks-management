@@ -6,7 +6,7 @@ export async function registerController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const {email, name, password} = validate(request.body)
+  const { email, name, password } = validate(request.body)
 
   const useCase = makeRegisterUseCase()
 

@@ -1,5 +1,7 @@
-export class InvalidCredentials extends Error {
+import { AppError } from "@/errors/AppError"
+
+export class InvalidCredentials extends AppError {
   constructor() {
-    super("Invalid credentials")
+    super("Invalid credentials", 401)
   }
 }
