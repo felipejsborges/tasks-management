@@ -12,16 +12,21 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:ui": "prisma studio"
   },
   "dependencies": {
     "@fastify/jwt": "6.7.1",
     "@prisma/client": "4.11.0",
+    "bcrypt": "5.1.0",
     "dotenv": "16.0.3",
     "fastify": "4.14.1",
     "zod": "3.21.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "5.0.0",
     "@types/node": "18.15.3",
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",

@@ -19,8 +19,10 @@ export class RegisterUseCase {
     const userAlreadyExists = await this.usersRepository.findByEmail(input.email)
 
     if (userAlreadyExists) {
+      console.log("CHEGOU !@entrou")
       throw new UserAlreadyExists()
     }
+    console.log("CHEGOU !@99")
 
     const hashedPassword = await this.hashProvider.hash(input.password)
 

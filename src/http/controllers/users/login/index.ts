@@ -19,7 +19,7 @@ export async function loginController(
     user_id: response.user.id,
   }
 
-  const token = reply.jwtSign(payload, { expiresIn: "1m" }) // 10m, 10h, 7d
+  const token = await reply.jwtSign(payload, { expiresIn: "1m" }) // 10m, 10h, 7d
 
   reply.status(201).send({ token })
 }

@@ -16,5 +16,5 @@ export async function registerController(
     password,
   })
 
-  return reply.status(200).send(response)
+  return reply.status(201).send(response)
 }

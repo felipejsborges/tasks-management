@@ -2,10 +2,10 @@ import { HashProvider } from "./interface"
 
 export class InMemoryHashProvider implements HashProvider {
   async hash(payload: string): Promise<string> {
-    return payload + "hashed"
+    return payload + "hash"
   }
 
-  async compare(payload: string, hashed: string): Promise<boolean> {
-    return payload + "hashed" === hashed
+  async compare(payload: string, hash: string): Promise<boolean> {
+    return payload + "hash" === hash
   }
 }
