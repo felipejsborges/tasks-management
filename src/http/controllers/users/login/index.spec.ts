@@ -1,8 +1,16 @@
-import { afterAll, beforeEach, describe, expect, it } from "vitest"
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest"
 import { app } from "@/app"
-import { clearDatabase } from "../../_utils/clearDatabase"
+import { clearDatabase } from "prisma/test_utils/clear-database"
 
-describe("POST /sessions", () => {
+describe("Login (integration): POST /sessions", () => {
+  beforeAll(async () => {
+    await app.ready()
+  })
+
+  afterAll(async () => {
+    await app.close()
+  })
+
   beforeEach(async () => {
     await clearDatabase()
   })
@@ -35,6 +43,3 @@ describe("POST /sessions", () => {
   })
 })
 
-afterAll(async () => {
-  await app.close()
-})
