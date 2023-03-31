@@ -7,16 +7,14 @@ export async function clearDatabase() {
   if (env.NODE_ENV !== "test") return
 
   const tableNames = await prisma.$queryRaw<
-  Array<{ tablename: string }>
+    Array<{ tablename: string }>
   >`SELECT tableName FROM pg_tables where schemaname = ${testsDatabaseSchema}`
 
-  const promises = tableNames.map(({ tablename: tableName }) => {
-    if (tableName !== "_prisma_migrations") {
-      return prisma.$executeRawUnsafe(
-        `TRUNCATE TABLE ${tableName} CASCADE;`
-      )
-    }
-  })
+  const tables = tableNames
+    .map(({ tablename }) => tablename)
+    .filter((name) => name !== "_prisma_migrations")
+    .map((name) => `"${testsDatabaseSchema}"."${name}"`)
+    .join(", ")
 
-  await Promise.all(promises)
+  await prisma.$executeRawUnsafe(`TRUNCATE TABLE ${tables} CASCADE;`)
 }

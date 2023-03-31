@@ -20,7 +20,7 @@ describe("Register (integration): POST /users", () => {
       method: "POST",
       url: "/users",
       payload: {
-        email: "john.doe@email.com",
+        email: "john.doe1@email.com",
         password: "123456",
         name: "John Doe"
       }
