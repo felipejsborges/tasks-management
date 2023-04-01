@@ -12,5 +12,5 @@ export const taskRoutes: FastifyPluginAsync = async (app) => {
   app.get("/:taskId", getTaskController)
   app.get("/", listTasksController)
   app.put("/:taskId", updateTaskController)
-  // app.delete("/:task_id", deleteTaskController)
+  // app.delete("/:taskId", deleteTaskController)
 }

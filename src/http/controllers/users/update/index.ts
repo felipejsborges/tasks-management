@@ -12,11 +12,11 @@ export async function updateUserController(
     ...(request.params as GenericObject),
   } as GenericObject
 
-  const { user_id, ...payload } = validate(input)
+  const { userId, ...payload } = validate(input)
 
   const useCase = makeUpdateUserUseCase()
 
-  const response = await useCase.execute(user_id, payload)
+  const response = await useCase.execute(userId, payload)
 
   return reply.status(200).send(response)
 }

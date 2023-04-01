@@ -4,7 +4,7 @@ import { clearDatabase } from "prisma/test_utils/clear-database"
 import { User } from "@/entities/user"
 import { Task } from "@/entities/task"
 
-describe("Update Task (integration): PUT /tasks/:task_id", () => {
+describe("Update Task (integration): PUT /tasks/:taskId", () => {
   beforeAll(async () => {
     await app.ready()
   })

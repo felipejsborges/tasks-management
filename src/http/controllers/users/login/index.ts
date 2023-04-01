@@ -16,7 +16,7 @@ export async function loginController(
   })
 
   const payload = {
-    user_id: response.user.id,
+    userId: response.user.id,
   }
 
   const token = await reply.jwtSign(payload, { expiresIn: "1m" }) // 10m, 10h, 7d

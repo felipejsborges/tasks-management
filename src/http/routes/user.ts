@@ -15,6 +15,6 @@ export const userRoutes: FastifyPluginAsync = async (app) => {
   app.post("/sessions", loginController)
 
   // app.addHook("onRequest", verifyJwt)
-  app.get("/:user_id", profileController)
-  app.put("/:user_id", updateUserController)
+  app.get("/:userId", profileController)
+  app.put("/:userId", updateUserController)
 }

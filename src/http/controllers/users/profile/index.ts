@@ -6,11 +6,11 @@ export async function profileController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const { user_id } = validate(request.params)
+  const { userId } = validate(request.params)
 
   const useCase = makeProfileUseCase()
 
-  const response = await useCase.execute(user_id)
+  const response = await useCase.execute(userId)
 
   return reply.status(200).send(response)
 }
