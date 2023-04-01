@@ -6,5 +6,6 @@ export default defineConfig({
   test: {
     globals: true,
     globalSetup: ["./setup/tests.ts"],
+    threads: false
   },
 })
