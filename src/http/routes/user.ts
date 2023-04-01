@@ -1,9 +1,12 @@
 import { FastifyPluginAsync } from "fastify"
+import fastifyJwt from "@fastify/jwt"
+
+import { verifyJwt } from "./middlewares/verifyJwt"
+
 import { registerController } from "../controllers/users/register"
 import { loginController } from "../controllers/users/login"
-import fastifyJwt from "@fastify/jwt"
-import { verifyJwt } from "./middlewares/verifyJwt"
 import { profileController } from "../controllers/users/profile"
+import { updateUserController } from "../controllers/users/update"
 
 export const userRoutes: FastifyPluginAsync = async (app) => {
   app.post("/", registerController)
@@ -13,4 +16,5 @@ export const userRoutes: FastifyPluginAsync = async (app) => {
 
   // app.addHook("onRequest", verifyJwt)
   app.get("/:user_id", profileController)
+  app.put("/:user_id", updateUserController)
 }

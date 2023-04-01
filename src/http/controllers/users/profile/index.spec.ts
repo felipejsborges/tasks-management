@@ -2,7 +2,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest"
 import { app } from "@/app"
 import { clearDatabase } from "prisma/test_utils/clear-database"
 
-describe("Profile (integration): GET /users/{user_id}", () => {
+describe("Profile (integration): GET /users/:user_id", () => {
   beforeAll(async () => {
     await app.ready()
   })
