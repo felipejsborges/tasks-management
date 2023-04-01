@@ -1,6 +1,6 @@
 import { Task } from "@/entities/task"
 
-export type TaskInput = Pick<Task, "title" | "description" | "effort" | "completedAt">
+export type TaskInput = Pick<Task, "userId" | "title" | "description" | "effort" | "completedAt">
 
 export interface TasksRepository {
 	create(data: TaskInput): Promise<Task>

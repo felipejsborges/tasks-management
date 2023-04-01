@@ -1,6 +1,7 @@
 import { TasksRepository } from "@/repositories/tasks/interface"
 
 interface CreateTaskUseCaseInput {
+	userId: string
 	title: string
 	description: string
 	effort: number
