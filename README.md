@@ -25,24 +25,12 @@
 
 **Functional Requirements:**
 
-- [ ] The system should allow the user to view their profile information, such as name and email;
-- [ ] The system should allow the user to edit their profile information.
+- [X] The system should allow the user to view their profile information, such as name and email;
+- [X] The system should allow the user to edit their profile information.
 
 **Non-functional Requirements:**
 
-- [ ] The system should display the profile information clearly and in an easy-to-understand way.
-
-## [ ] As a user, I want to be able to recover my password if I forget it.
-
-**Functional Requirements:**
-
-- [ ] The system should allow the user to recover their password by providing the registered email;
-- [ ] The system should send an email containing a link to reset the password to the email address provided by the user.
-
-**Non-functional Requirements:**
-
-- [ ] The system should send the password recovery email securely;
-- [ ] The link to reset the password should expire after a configurable time.
+- [X] The system should display the profile information clearly and in an easy-to-understand way.
 
 ## [ ] As a user, I want to be able to create, view, update, and delete my tasks.
 
