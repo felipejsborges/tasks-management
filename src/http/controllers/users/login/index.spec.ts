@@ -16,7 +16,7 @@ describe("Login (integration): POST /sessions", () => {
   })
 
   it("should be able to login and generate a token", async () => {
-    const email = "john.doe@email.com"
+    const email = "john.doe3@email.com"
     const password = "123456"
 
     await app.inject({

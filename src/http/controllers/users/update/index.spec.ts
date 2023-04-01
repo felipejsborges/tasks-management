@@ -20,7 +20,7 @@ describe("Update User (integration): PUT /users/:user_id", () => {
       method: "POST",
       url: "/users",
       payload: {
-        email: "john.doe@email.com",
+        email: "john.doe7@email.com",
         password: "123456",
         name: "John Doe"
       }
