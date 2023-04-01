@@ -1,13 +1,15 @@
 import fastify from "fastify"
+import { fastifyJwt } from "@fastify/jwt"
 
 import { errorHandler } from "./http/controllers/_utils/errorHandler"
 
-import { taskRoutes } from "./http/routes/tasks"
-import { userRoutes } from "./http/routes/user"
+import { publicRoutes } from "./http/routes/public"
+import { privateRoutes } from "./http/routes/private"
 
 export const app = fastify()
 
 app.setErrorHandler(errorHandler)
 
-app.register(userRoutes, {prefix: "/users"})
-app.register(taskRoutes, {prefix: "/tasks"})
+app.register(fastifyJwt, { secret: process.env.JWT_SECRET })
+app.register(publicRoutes)
+app.register(privateRoutes)

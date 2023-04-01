@@ -32,7 +32,7 @@ describe("Create Task (integration): POST /tasks", () => {
 
     const { token } = (await app.inject({
       method: "POST",
-      url: "/users/sessions",
+      url: "/sessions",
       payload: {
         email: userData.email,
         password: userData.password

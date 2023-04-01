@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 const schema = z.object({
-  userId: z.string().uuid(),
+  taskId: z.string().uuid(),
 })
 
 export function validate(input: unknown) {

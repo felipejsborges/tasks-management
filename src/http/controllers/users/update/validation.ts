@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-const registerSchema = z.object({
+const schema = z.object({
   userId: z.string().uuid(),
   name: z.string().min(3).max(255).optional(),
   email: z.string().email().min(3).max(255).optional(),
@@ -8,5 +8,5 @@ const registerSchema = z.object({
 })
 
 export function validate(input: unknown) {
-  return registerSchema.parse(input)
+  return schema.parse(input)
 }

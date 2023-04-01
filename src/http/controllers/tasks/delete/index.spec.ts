@@ -4,7 +4,7 @@ import { clearDatabase } from "prisma/test_utils/clear-database"
 import { User } from "@/entities/user"
 import { Task } from "@/entities/task"
 
-describe("Update Task (integration): PUT /tasks/:taskId", () => {
+describe("Delete Task (integration): DELETE /tasks/:taskId", () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -17,7 +17,7 @@ describe("Update Task (integration): PUT /tasks/:taskId", () => {
     await clearDatabase()
   })
 
-  it("should be able to update a task", async () => {
+  it("should be able to delete a task", async () => {
     const userData = {
       name: "John Doe",
       email: "john.doe8@email.com",
@@ -57,29 +57,27 @@ describe("Update Task (integration): PUT /tasks/:taskId", () => {
       }
     })).json<{ task: Task }>()
 
-    // Update the task
-    const dataToUpdate = {
-      title: "My updated task",
-      description: "My updated task description",
-      effort: 2
-    }
-
+    // Delete the task
     const response = await app.inject({
-      method: "PUT",
+      method: "DELETE",
       url: `/tasks/${createdTask.id}`,
       headers: {
         Authorization: `Bearer ${token}`
-      },
-      payload: dataToUpdate
+      }
     })
 
-    expect(response.statusCode).toBe(200)
+    expect(response.statusCode).toBe(204)
 
-    const responseBody = response.json()
+    // Check if the task was deleted
+    const getTheTaskResponse = await app.inject({
+      method: "GET",
+      url: `/tasks/${createdTask.id}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
 
-    expect(responseBody.task.title).toBe(dataToUpdate.title)
-    expect(responseBody.task.description).toBe(dataToUpdate.description)
-    expect(responseBody.task.effort).toBe(dataToUpdate.effort)
+    expect(getTheTaskResponse.statusCode).toBe(404)
   })
 })
 

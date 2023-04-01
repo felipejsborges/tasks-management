@@ -35,7 +35,7 @@ describe("Get Task (integration): GET /tasks/:taskId", () => {
     // Login
     const { token } = (await app.inject({
       method: "POST",
-      url: "/users/sessions",
+      url: "/sessions",
       payload: {
         email: userData.email,
         password: userData.password

@@ -31,7 +31,7 @@ describe("Login (integration): POST /sessions", () => {
 
     const response = await app.inject({
       method: "POST",
-      url: "/users/sessions",
+      url: "/sessions",
       payload: {
         email,
         password,

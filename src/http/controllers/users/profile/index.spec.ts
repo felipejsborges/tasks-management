@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest"
 import { app } from "@/app"
 import { clearDatabase } from "prisma/test_utils/clear-database"
+import { User } from "@/entities/user"
 
 describe("Profile (integration): GET /users/:userId", () => {
   beforeAll(async () => {
@@ -16,32 +17,35 @@ describe("Profile (integration): GET /users/:userId", () => {
   })
 
   it("should be able to get the profile of an user", async () => {
-    const user = {
+    const userData = {
+      name: "John Doe",
       email: "john.doe2@email.com",
-      password: "123456",
-      name: "John Doe"
+      password: "123456"
     }
 
-    const createUserResponse = (await app.inject({
-      method: "POST",
-      url: "/users",
-      payload: { ...user }
-    })).json()
+    // Create an user
+    const { user: createdUser } = (
+      await app.inject({
+        method: "POST",
+        url: "/users",
+        payload: userData
+      })).json<{ user: User }>()
 
-    const createSessionResponse = (await app.inject({
+    // Login
+    const { token } = (await app.inject({
       method: "POST",
-      url: "/users/sessions",
+      url: "/sessions",
       payload: {
-        email: user.email,
-        password: user.password
+        email: userData.email,
+        password: userData.password
       }
-    })).json()
+    })).json<{ token: string }>()
 
     const response = await app.inject({
       method: "GET",
-      url: `/users/${createUserResponse.user.id}`,
+      url: `/users/${createdUser.id}`,
       headers: {
-        Authorization: `Bearer ${createSessionResponse.token}`
+        Authorization: `Bearer ${token}`
       }
     })
 

@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest"
 import { app } from "@/app"
 import { clearDatabase } from "prisma/test_utils/clear-database"
+import { User } from "@/entities/user"
 
 describe("Update User (integration): PUT /users/:userId", () => {
   beforeAll(async () => {
@@ -16,16 +17,31 @@ describe("Update User (integration): PUT /users/:userId", () => {
   })
 
   it("should be able to update an user", async () => {
-    const createdUser = (await app.inject({
-      method: "POST",
-      url: "/users",
-      payload: {
-        email: "john.doe7@email.com",
-        password: "123456",
-        name: "John Doe"
-      }
-    })).json()
+    const userData = {
+      name: "John Doe",
+      email: "john.doe7@email.com",
+      password: "123456"
+    }
 
+    // Create an user
+    const { user: createdUser } = (
+      await app.inject({
+        method: "POST",
+        url: "/users",
+        payload: userData
+      })).json<{ user: User }>()
+
+    // Login
+    const { token } = (await app.inject({
+      method: "POST",
+      url: "/sessions",
+      payload: {
+        email: userData.email,
+        password: userData.password
+      }
+    })).json<{ token: string }>()
+
+    // Update the user
     const dataToUpdate = {
       email: "john.doe.updated2@email.com",
       password: "123456updated",
@@ -34,7 +50,10 @@ describe("Update User (integration): PUT /users/:userId", () => {
 
     const response = await app.inject({
       method: "PUT",
-      url: `/users/${createdUser.user.id}`,
+      url: `/users/${createdUser.id}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
       payload: dataToUpdate
     })
 
